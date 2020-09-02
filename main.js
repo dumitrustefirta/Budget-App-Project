@@ -194,26 +194,11 @@ let UIController = (function () {
 
     return {
         getInput: function () {
-            // let tempStorage = getBudgetLocalStorage();
-            // tempStorage === null ? tempStorage = [] : tempStorage;
-
-            // let storageId = tempStorage.length;
-
-            // tempStorage.push({
-            //     storageId: storageId, 
-            //     type: document.querySelector(DOMstrings.inputType).value,
-            //     description: document.querySelector(DOMstrings.inputDescription).value,
-            //     value: parseFloat(document.querySelector(DOMstrings.inputValue).value)
-            // });
-            // setBudgetToLocalStorage(tempStorage);
-
             return {
                 type: document.querySelector(DOMstrings.inputType).value, // Will be either inc or exp
                 description: document.querySelector(DOMstrings.inputDescription).value,
                 value: parseFloat(document.querySelector(DOMstrings.inputValue).value)
-            };
-
-            
+            };          
         },
 
         addListItem: function (obj, type) {
@@ -223,11 +208,11 @@ let UIController = (function () {
             if (type === 'inc') {
                 element = DOMstrings.incomeContainer;
 
-                html = '<div class="item clearfix" id="inc-%id%"> <div class="item__description">%description%</div><div class="right clearfix"><div class="item__value">%value%</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>';
+                html = '<div class="item clearfix" id="inc-%id%"> <div class="item__description">%description%</div><div class="right clearfix"><div class="item__value">%value%</div><div class="item__delete"><button class="item__delete--btn"><i class="fas fa-trash"></i></button></div></div></div>';
             } else if (type === 'exp') {
                 element = DOMstrings.expensesContainer;
 
-                html = '<div class="item clearfix" id="exp-%id%"><div class="item__description">%description%</div><div class="right clearfix"><div class="item__value">%value%</div><div class="item__percentage">21%</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>';
+                html = '<div class="item clearfix" id="exp-%id%"><div class="item__description">%description%</div><div class="right clearfix"><div class="item__value">%value%</div><div class="item__percentage">21%</div><div class="item__delete"><button class="item__delete--btn"><i class="fas fa-trash"></i></button></div></div></div>';
             }
 
             // Replace the placeholder text with some actual data
@@ -305,7 +290,6 @@ let UIController = (function () {
             });
 
             document.querySelector(DOMstrings.inputBtn).classList.toggle('red');
-
         },
 
         getDOMstrings: function () {
@@ -362,12 +346,6 @@ let controller = (function (budgetCtrl, UICtrl) {
     
           // Display the percentage
           updatePercentages();
-    
-          // Using saved inc and exp data to show chart
-        //   updateChart(
-        //     parseInt(storedData.totals.inc),
-        //     parseInt(storedData.totals.exp)
-        //   );
         }
     };
 
@@ -443,7 +421,6 @@ let controller = (function (budgetCtrl, UICtrl) {
             // 3. Update and show the new budget
             updateBudget();
         }
-
     };
 
     return {
